@@ -1,4 +1,4 @@
-require 'debug'
+require "debug"
 require "awesome_print"
 
 class App < Sinatra::Base
@@ -13,6 +13,17 @@ class App < Sinatra::Base
       return @db
     end
 
-    #TODO: Skriv routen hämtar alla frukter i databasen
+    get "/fruits" do
+      
+      @fruits = db.execute("SELECT * FROM products")
+      erb(:"fruits/index")
+    end
 
+    get "/fruits/:id" do |id|
+      @fruit = db.execute("SELECT * FROM products WHERE id=?", id).first
+      ap @fruit
+      erb(:"fruits/show")
+    end
 end
+
+
