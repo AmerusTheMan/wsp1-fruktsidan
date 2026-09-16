@@ -4,6 +4,9 @@
     <%  @fruits.each do |fruit|%>
     <li>
         <a href="/fruits/<%= fruit["id"] %>"><%= fruit["name"] %></a>
+        <form action="/fruits/<%= fruit["id"] %>/delete" method="post">
+            <input type="submit" value="Delete">
+        </form>
     </li>
     <% end%>
 </ul>
